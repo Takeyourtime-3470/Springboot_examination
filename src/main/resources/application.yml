@@ -1,0 +1,17 @@
+#应用名称
+spring:
+  application:
+    name: mbexp
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/service_queue_db
+    username: root
+    password: 123
+
+#应用服务访问web端口号
+server:
+  port: 9090
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis.cfg.xml

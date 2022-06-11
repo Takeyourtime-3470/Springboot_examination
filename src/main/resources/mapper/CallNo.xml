@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.kgc.mapper.CallNoMapper">
+
+<!--    查询并返回今天是第几个-->
+    <select id="queryQueueNum" resultType="int">
+        select count(id)+1 from service_queue where substring(line_up_time,1,10)=substring(now(),1,10)
+    </select>
+<!--    查询前面还有多少人排队-->
+    <select id="moreQueueNum" resultType="int">
+        select count(*) from service_queue where substring(line_up_time,1,10)=substring(now(),1,10)
+        and service_status=1
+    </select>
+
+
+    <!--    向数据库存放数据-->
+    <insert id="insertCallNo" parameterType="queue" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO service_queue(number,date,line_up_time,business_type,service_status)
+        VALUES(#{number},now(),now(),#{business_type},#{service_status})
+    </insert>
+
+<!--    根据用户反馈的id查询号单-->
+    <select id="queryCallNoById" parameterType="int" resultType="queue">
+        select *
+        from service_queue where id=#{id};
+    </select>
+</mapper>
