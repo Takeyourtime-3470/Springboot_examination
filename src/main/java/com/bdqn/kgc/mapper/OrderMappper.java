@@ -12,8 +12,9 @@ public interface OrderMappper {
 
     void insertOrderItems(List<OrderItems> items);
 
-    Orders findeOrderById(int iddd);
-    ///sdfdsf
+    Orders findeOrderById(int id);
 
     List<OrderItems> findOrderItemsByOrdid(int id);
+
+
 }
